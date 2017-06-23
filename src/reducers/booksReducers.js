@@ -1,23 +1,11 @@
 "use strict"
 
 export function booksReducers(state = {
-  books:
-    [{
-      _id: 1,
-      title: 'this is the book title',
-      description: 'this is the book description',
-      price: 44.33
-    },
-    {
-      _id: 2,
-      title: 'this is the second book title',
-      description: 'this is the second book description',
-      price: 54
-    }]
+  books: []
   }, action){
   switch(action.type){
     case "GET_BOOKS":
-      return {...state, books: [...state.books]};
+      return {...state, books: [...action.payload]};
       break;
     case "POST_BOOK":
       let books = {books: [...state.books, ...action.payload]};
@@ -27,7 +15,6 @@ export function booksReducers(state = {
       const currentBookToDelete = [...state.books];
       const indexToDelete = currentBookToDelete.findIndex(
         function(book){
-          debugger;
           return book._id == action.payload._id;
         }
       )

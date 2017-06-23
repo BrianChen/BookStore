@@ -12,8 +12,9 @@ import BooksForm from './components/pages/booksForm';
 import Main from './main';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import thunk from 'redux-thunk';
 
-const middleware = applyMiddleware(logger);
+const middleware = applyMiddleware(thunk, logger);
 const store = createStore(reducers, middleware);
 
 window.store = store;

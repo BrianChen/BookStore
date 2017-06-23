@@ -19,7 +19,6 @@ class BooksForm extends React.Component{
 
   onDelete(){
     let bookId = findDOMNode(this.refs.delete).value;
-    debugger;
     this.props.deleteBooks(bookId);
   }
 
