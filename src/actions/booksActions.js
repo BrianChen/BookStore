@@ -10,7 +10,7 @@ export function getBooks(){
       })
     }).catch(function(err){
       dispatch({
-        type: "GET_BOOKS_REJECTED", payload:err
+        type: "GET_BOOKS_REJECTED", payload: 'get books connection error'
       })
     })
   }
