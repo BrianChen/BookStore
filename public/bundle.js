@@ -8482,10 +8482,19 @@ function updateCart(_id, unit, cart) {
   };
 }
 
-function deleteCartItem(cart) {
-  return {
-    type: "DELETE_CART_ITEM",
-    payload: cart
+function deleteCartItem(cartItem) {
+  return function (dispatch) {
+    _axios2.default.post('/api/cart', cartItem).then(function (response) {
+      dispatch({
+        type: 'DELETE_CART_ITEM',
+        payload: response.data
+      });
+    }).catch(function (err) {
+      dispatch({
+        type: 'DELETE_CART_ITEM_REJECTED',
+        payload: 'error when deleteing cart item'
+      });
+    });
   };
 }
 

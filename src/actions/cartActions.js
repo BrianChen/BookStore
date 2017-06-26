@@ -61,9 +61,18 @@ export function updateCart(_id, unit, cart){
   }
 }
 
-export function deleteCartItem(cart){
-  return {
-    type: "DELETE_CART_ITEM",
-    payload: cart
+export function deleteCartItem(cartItem){
+  return function(dispatch){
+    axios.post('/api/cart', cartItem).then(function(response){
+      dispatch({
+        type: 'DELETE_CART_ITEM',
+        payload: response.data
+      })
+    }).catch(function(err){
+      dispatch({
+        type: 'DELETE_CART_ITEM_REJECTED',
+        payload: 'error when deleteing cart item'
+      })
+    })
   }
 }
